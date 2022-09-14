@@ -1,41 +1,42 @@
 const { response } = require("express");
 const { model } = require("mongoose");
-const Author = require("../models/author.model");
+const Team = require("../models/team.model");
 
-module.exports.getAllAuthor = (req, res) => {
-  Author.find({})
-    .then((allDaAuthor) => res.json({ author: allDaAuthor }))
+module.exports.getAllTeam = (req, res) => {
+  Team.find({})
+    .then((allDaTeam) => res.json({ team: allDaTeam }))
     .catch((err) => res.json({ message: "Something went wrong", error: err }));
 };
 
-module.exports.getAuthor = (request, response) => {
-  Author.findOne({ _id: request.params.id })
-    .then((author) => response.json(author))
+module.exports.getTeam = (request, response) => {
+  Team.findOne({ _id: request.params.id })
+    .then((team) => response.json(team))
     .catch((err) => response.json(err));
 };
 
-module.exports.createAuthor = (req, res) => {
-  const { name } = req.body;
-  Author.create({
+module.exports.createTeam = (req, res) => {
+  const { name, position } = req.body;
+  Team.create({
     name,
+    position,
   })
-    .then((author) => res.json(author))
+    .then((team) => res.json(team))
     .catch((err) => res.status(400).json(err));
 };
 
-module.exports.updateAuthor = (request, response) => {
-  Author.findByIdAndUpdate({ _id: request.params.id }, request.body, {
+module.exports.updateTeam = (request, response) => {
+  Team.findByIdAndUpdate({ _id: request.params.id }, request.body, {
     new: true,
     runValidators: true,
   })
-    .then((updatedAuthor) => {
-      response.json(updatedAuthor);
+    .then((updatedTeam) => {
+      response.json(updatedTeam);
     })
     .catch((err) => response.status(400).json(err));
 };
 
-module.exports.deleteAuthor = (request, response) => {
-  Author.deleteOne({ _id: request.params.id }).then((deleteConfirmation) =>
+module.exports.deleteTeam = (request, response) => {
+  Team.deleteOne({ _id: request.params.id }).then((deleteConfirmation) =>
     response.json(deleteConfirmation)
   );
 };

@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import AuthorList from "../components/AuthorList";
+import TeamList from "../components/TeamList";
 
 const Main = () => {
-  const [author, setAuthor] = useState([]);
+  const [team, setTeam] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/author")
+      .get("http://localhost:8000/api/team")
       .then((res) => {
-        setAuthor(res.data.author);
+        setTeam(res.data.team);
         setLoaded(true);
       })
       .catch((err) => console.error(err));
-  }, [author]);
+  }, [team]);
 
-  const removeFromDom = (authorId) => {
-    setAuthor(author.filter((author) => author._id !== authorId));
+  const removeFromDom = (teamId) => {
+    setTeam(team.filter((team) => team._id !== teamId));
   };
   
   return (
     <div className="table">
       {loaded && (
-        <AuthorList author={author} removeFromDom={removeFromDom} />
+        <TeamList team={team} removeFromDom={removeFromDom} />
       )}
     </div>
   );

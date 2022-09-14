@@ -11,7 +11,7 @@ const Edit = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/author/" + id).then((res) => {
+    axios.get("http://localhost:8000/api/team/" + id).then((res) => {
       setName(res.data.name);
     });
   }, [id]);
@@ -19,11 +19,11 @@ const Edit = (props) => {
   const updateProduct = (e) => {
     e.preventDefault();
     axios
-      .put("http://localhost:8000/api/author/" + id, {
+      .put("http://localhost:8000/api/team/" + id, {
         name,
       })
       // .then((res) => console.log(res))
-      .then(() => navigate("/author"))
+      .then(() => navigate("/team"))
 
       .catch((err) => {
         const errorResponse = err.response.data.errors;
@@ -33,14 +33,14 @@ const Edit = (props) => {
         }
         setErrors(errorArr);
       });
-    // .finally(() => navigate("/author/edit/" + id));
+    // .finally(() => navigate("/team/edit/" + id));
   };
 
   return (
     <div className="container">
       <div className="card">
         <div className="card-header text-center">
-          <h1>Edit Author</h1>
+          <h1>Edit Team</h1>
         </div>
         <div className="card-body">
           <form onSubmit={updateProduct}>

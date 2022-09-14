@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import AuthorForm from "../components/AuthorForm";
+import TeamForm from "../components/TeamForm";
 
 const New = () => {
-  const [author, setAuthor] = useState([]);
+  const [team, setTeam] = useState([]);
   // const [loaded, setLoaded] = useState(false);
 
   // const navigate = useNavigate;
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/author")
+      .get("http://localhost:8000/api/team")
       .then((res) => {
-        setAuthor(res.data.author);
+        setTeam(res.data.team);
         // setLoaded(true);
       })
       .catch((err) => console.error(err));
-  }, [author]);
+  }, [team]);
 
   return (
     <div>
-      <AuthorForm />
+      <TeamForm />
     </div>
   );
 };

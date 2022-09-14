@@ -20,8 +20,8 @@ app.use(express.json(), express.urlencoded({ extended: true }));
 // app.use(errorController);
 
 // Routes 
-const AllMyAuthorRoutes = require("./server/routes/author.routes");
-AllMyAuthorRoutes(app);
+const AllMyTeamRoutes = require("./server/routes/team.routes");
+AllMyTeamRoutes(app);
 
 
 

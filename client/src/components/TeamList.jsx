@@ -2,14 +2,14 @@ import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const AuthorList = (props) => {
+const TeamList = (props) => {
   const { removeFromDom } = props;
 
-  const deleteAuthor = (authorId) => {
+  const deleteTeam = (teamId) => {
     axios
-      .delete("http://localhost:8000/api/author/" + authorId)
+      .delete("http://localhost:8000/api/team/" + teamId)
       .then((res) => {
-        removeFromDom(authorId);
+        removeFromDom(teamId);
       })
       .catch((err) => console.error(err));
   };
@@ -19,7 +19,7 @@ const AuthorList = (props) => {
       <div className="container">
         <div className="card">
           <div className="card-header text-center">
-            <h1>All Authors</h1>
+            <h1>All Teams</h1>
           </div>
         </div>
       <p>We have quotes by:</p>
@@ -32,21 +32,21 @@ const AuthorList = (props) => {
         <table className="table table-striped table-hover table-bordered border-primary">
                       <thead className="bg-dark text-white">
                         <tr>
-                          <th>Author</th>
+                          <th>Team</th>
                           <th>Actions</th>
                         </tr>
                       </thead>
-          {props.author &&
-            props.author.map((author, i) => {
+          {props.team &&
+            props.team.map((team, i) => {
               return (
                       <tbody>
                       <div key={i} className="d-flex"></div>
                         <tr>
-                          <td>{author.name}</td>
+                          <td>{team.name}</td>
                           <td>
                           <div className="d-flex">
-                            <Link className="btn btn-warning me-2 text-center"  style={{width:"100px", height:"50px"}} to={`/author/edit/${author._id}`}><p>Edit</p></Link>
-                            <button className="btn btn-danger"  style={{width:"100px", height:"50px"}} onClick={(e) => deleteAuthor(author._id)}>Delete</button>
+                            <Link className="btn btn-warning me-2 text-center"  style={{width:"100px", height:"50px"}} to={`/team/edit/${team._id}`}><p>Edit</p></Link>
+                            <button className="btn btn-danger"  style={{width:"100px", height:"50px"}} onClick={(e) => deleteTeam(team._id)}>Delete</button>
                           </div>
                           </td>
                         </tr>
@@ -59,4 +59,4 @@ const AuthorList = (props) => {
   );
 };
 
-export default AuthorList;
+export default TeamList;

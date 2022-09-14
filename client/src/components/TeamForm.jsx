@@ -11,11 +11,11 @@ const AuthorForm = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8000/api/author", {
+      .post("http://localhost:8000/api/team", {
         name,
       })
 
-      .then(() => navigate("/author"))
+      .then(() => navigate("/team"))
 
       .catch(err => {
         const errorResponse = err.response.data.errors;
@@ -35,7 +35,7 @@ const AuthorForm = () => {
     <div className="container">
       <div className="card mt-5">
         <div className="card-header text-center">
-          <h1>Add a new Author</h1>
+          <h1>Add a new Team</h1>
         </div>
         <div className="card-body">
           <form onSubmit={onSubmitHandler}>
@@ -50,7 +50,7 @@ const AuthorForm = () => {
               />
             </p>
             <input className="btn btn-success btn-sm me-1" style={{width:"100px"}} type="submit" />
-            <Link className='btn btn-warning btn-sm' style={{width:"100px", height:"40px"}} to={`/author`}><p>Cancel</p></Link>
+            <Link className='btn btn-warning btn-sm' style={{width:"100px", height:"40px"}} to={`/team`}><p>Cancel</p></Link>
           </form>
         </div>
       </div>

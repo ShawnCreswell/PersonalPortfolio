@@ -8,7 +8,7 @@ const Nav = () => {
         
         <div className="container">
             <div className="bg-light">
-                <Link className='btn ' to={`/author`}><p>Home</p></Link>
+                <Link className='btn ' to={`/team`}><p>Home</p></Link>
                 <Link className='btn ' to={`/new`}><p>Create</p></Link>
             </div>
         </div>
