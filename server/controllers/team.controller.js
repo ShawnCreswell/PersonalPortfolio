@@ -15,10 +15,11 @@ module.exports.getTeam = (request, response) => {
 };
 
 module.exports.createTeam = (req, res) => {
-  const { name, position } = req.body;
+  const { name, position, gameStatus } = req.body;
   Team.create({
     name,
     position,
+    gameStatus,
   })
     .then((team) => res.json(team))
     .catch((err) => res.status(400).json(err));

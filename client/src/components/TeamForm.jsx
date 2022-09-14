@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const AuthorForm = () => {
   const [name, setName] = useState("");
+  const [position, setPosition] = useState("");
+
 
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
@@ -12,7 +14,7 @@ const AuthorForm = () => {
     e.preventDefault();
     axios
       .post("http://localhost:8000/api/team", {
-        name,
+        name, position,
       })
 
       .then(() => navigate("/team"))
@@ -28,6 +30,7 @@ const AuthorForm = () => {
     
       .finally(() => {
         setName("");
+        setPosition("")
       });
   };
 
@@ -47,6 +50,15 @@ const AuthorForm = () => {
                 type="text"
                 onChange={(e) => setName(e.target.value)}
                 value={name}
+              />
+            </p>
+            <p>
+              <label>Position:</label>
+              <br />
+              <input
+                type="text"
+                onChange={(e) => setPosition(e.target.value)}
+                value={position}
               />
             </p>
             <input className="btn btn-success btn-sm me-1" style={{width:"100px"}} type="submit" />

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams, Link, useNavigate } from "react-router-dom";
 import TeamForm from "../components/TeamForm";
 
 const New = () => {

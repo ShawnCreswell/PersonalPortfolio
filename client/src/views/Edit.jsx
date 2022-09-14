@@ -5,6 +5,9 @@ import { useParams, useNavigate } from "react-router-dom";
 const Edit = (props) => {
   const { id } = useParams();
   const [name, setName] = useState("");
+  const [position, setPosition] = useState("");
+
+
 
   const [errors, setErrors] = useState([]);
 
@@ -13,6 +16,7 @@ const Edit = (props) => {
   useEffect(() => {
     axios.get("http://localhost:8000/api/team/" + id).then((res) => {
       setName(res.data.name);
+      setPosition(res.data.position);
     });
   }, [id]);
 
@@ -20,7 +24,7 @@ const Edit = (props) => {
     e.preventDefault();
     axios
       .put("http://localhost:8000/api/team/" + id, {
-        name,
+        name, position,
       })
       // .then((res) => console.log(res))
       .then(() => navigate("/team"))
@@ -57,6 +61,15 @@ const Edit = (props) => {
                   setName(e.target.value);
                 }}
               />
+              <p>
+              <label>Position:</label>
+              <br />
+              <input
+                type="text"
+                onChange={(e) => setPosition(e.target.value)}
+                value={position}
+              />
+            </p>
             </p>
             <input className="btn btn-primary" type="submit" />
           </form>

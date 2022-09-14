@@ -19,10 +19,9 @@ const TeamList = (props) => {
       <div className="container">
         <div className="card">
           <div className="card-header text-center">
-            <h1>All Teams</h1>
+            <h1>All Players</h1>
           </div>
         </div>
-      <p>We have quotes by:</p>
       </div>
 
 
@@ -32,7 +31,8 @@ const TeamList = (props) => {
         <table className="table table-striped table-hover table-bordered border-primary">
                       <thead className="bg-dark text-white">
                         <tr>
-                          <th>Team</th>
+                          <th>Team Name</th>
+                          <th>Preferred Position</th>
                           <th>Actions</th>
                         </tr>
                       </thead>
@@ -42,7 +42,8 @@ const TeamList = (props) => {
                       <tbody>
                       <div key={i} className="d-flex"></div>
                         <tr>
-                          <td>{team.name}</td>
+                          <td><Link to={`/team/edit/${team._id}`}><p>{team.name}</p></Link></td>
+                          <td>{team.position}</td>
                           <td>
                           <div className="d-flex">
                             <Link className="btn btn-warning me-2 text-center"  style={{width:"100px", height:"50px"}} to={`/team/edit/${team._id}`}><p>Edit</p></Link>
