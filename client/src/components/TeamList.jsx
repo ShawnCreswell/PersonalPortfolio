@@ -24,9 +24,6 @@ const TeamList = (props) => {
         </div>
       </div>
 
-
-
-
       <div className="container">
         <table className="table table-striped table-hover table-bordered border-primary">
                       <thead className="bg-dark text-white">

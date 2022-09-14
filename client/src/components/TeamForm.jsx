@@ -38,7 +38,7 @@ const AuthorForm = () => {
     <div className="container">
       <div className="card mt-5">
         <div className="card-header text-center">
-          <h1>Add a new Team</h1>
+          <h1>Add a new Player</h1>
         </div>
         <div className="card-body">
           <form onSubmit={onSubmitHandler}>

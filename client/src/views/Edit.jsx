@@ -26,7 +26,6 @@ const Edit = (props) => {
       .put("http://localhost:8000/api/team/" + id, {
         name, position,
       })
-      // .then((res) => console.log(res))
       .then(() => navigate("/team"))
 
       .catch((err) => {
@@ -37,14 +36,13 @@ const Edit = (props) => {
         }
         setErrors(errorArr);
       });
-    // .finally(() => navigate("/team/edit/" + id));
   };
 
   return (
     <div className="container">
       <div className="card">
         <div className="card-header text-center">
-          <h1>Edit Team</h1>
+          <h1>Edit Player</h1>
         </div>
         <div className="card-body">
           <form onSubmit={updateProduct}>

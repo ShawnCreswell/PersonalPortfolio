@@ -7,7 +7,6 @@ import New from "./views/New";
 import Nav from "./views/Nav";
 import Status from "./views/Status";
 import StatusList from "./components/StatusList";
-import Tabs from "./views/Tabs";
 
 function App() {
   return (
@@ -16,10 +15,8 @@ function App() {
       <Routes>
           <Route path='/' element={<Navigate to={"/team"} /> } /> 
           <Route element={<Main />} path="/team" />
-          <Route element={<Tabs />} path="/team/1" />
           <Route element={<New />} path="/new" />
           <Route element={<Edit />} path="/team/edit/:id" />
-          
           <Route path="status" element={<Status />}>
             <Route index element={<Navigate to="1" />} />
             <Route path="1" element={<StatusList num="1" />} />

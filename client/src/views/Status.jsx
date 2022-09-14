@@ -1,6 +1,5 @@
-import React from "react"
-import { Outlet, NavLink } from "react-router-dom"
-
+import React from "react";
+import { Outlet, NavLink } from "react-router-dom";
 
 const Status = () => {
   return (
@@ -37,7 +36,7 @@ const Status = () => {
       </div>
       <Outlet />
     </div>
-  )
-}
+  );
+};
 
-export default Status
+export default Status;
