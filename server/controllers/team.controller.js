@@ -4,7 +4,7 @@ const Team = require("../models/team.model");
 
 module.exports.getAllTeam = (req, res) => {
   Team.find({})
-    .then((allDaTeam) => res.json({ team: allDaTeam }))
+    .then((allDaTeam) => res.json({ teams: allDaTeam }))
     .catch((err) => res.json({ message: "Something went wrong", error: err }));
 };
 
@@ -15,11 +15,13 @@ module.exports.getTeam = (request, response) => {
 };
 
 module.exports.createTeam = (req, res) => {
-  const { name, position, gameStatus } = req.body;
+  const { name, position, status1, status2, status3 } = req.body;
   Team.create({
     name,
     position,
-    gameStatus,
+    status1,
+    status2,
+    status3,
   })
     .then((team) => res.json(team))
     .catch((err) => res.status(400).json(err));
@@ -31,6 +33,7 @@ module.exports.updateTeam = (request, response) => {
     runValidators: true,
   })
     .then((updatedTeam) => {
+      console.log(updatedTeam)
       response.json(updatedTeam);
     })
     .catch((err) => response.status(400).json(err));

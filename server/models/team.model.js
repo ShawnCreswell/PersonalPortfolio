@@ -13,13 +13,9 @@ const TeamSchema = new mongoose.Schema(
 				minlength: [1, "Position must be at least 1 characters long"]
 			},
 			
-			gameStatus:
-			[
-				{type: String, required: true},
-				{type: String, required: true},
-				{type: String, required: true}
-			],
-		
+			status1: { type: String},
+			status2: { type: String},
+			status3: { type: String},
 },
 	{ timestamps: true }
 );

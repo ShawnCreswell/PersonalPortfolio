@@ -5,7 +5,8 @@ import Edit from "./views/Edit";
 import Main from "./views/Main";
 import New from "./views/New";
 import Nav from "./views/Nav";
-// import Status from "./views/Status";
+import Status from "./views/Status";
+import StatusList from "./components/StatusList";
 import Tabs from "./views/Tabs";
 
 function App() {
@@ -18,6 +19,13 @@ function App() {
           <Route element={<Tabs />} path="/team/1" />
           <Route element={<New />} path="/new" />
           <Route element={<Edit />} path="/team/edit/:id" />
+          
+          <Route path="status" element={<Status />}>
+            <Route index element={<Navigate to="1" />} />
+            <Route path="1" element={<StatusList num="1" />} />
+            <Route path="2" element={<StatusList num="2" />} />
+            <Route path="3" element={<StatusList num="3" />} />
+          </Route>
       </Routes>
     </div>
   );

@@ -11,7 +11,7 @@ const Nav = () => {
                 <Link className='btn ' to={`/team`}><p>List</p></Link>
                 <Link className='btn ' to={`/new`}><p>Add Player</p></Link>
                 <Link className='btn ' to={`/team`}><p>Manage Players</p></Link>
-                <Link className='btn ' to={`/team/1`}><p>Manage Player Status</p></Link>
+                <Link className='btn ' to={`/status/1`}><p>Manage Player Status</p></Link>
             </div>
         </div>
     )

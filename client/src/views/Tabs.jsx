@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
 import StatusP from "./Status";
+import StatusList from "../components/StatusList";
 const Tabs = (props) => {
   const [currentTab, setCurrentTab] = useState();
 

@@ -10,7 +10,7 @@ const Main = () => {
     axios
       .get("http://localhost:8000/api/team")
       .then((res) => {
-        setTeam(res.data.team);
+        setTeam(res.data.teams);
         setLoaded(true);
       })
       .catch((err) => console.error(err));
