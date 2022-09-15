@@ -10,13 +10,12 @@ import StatusList from "./components/StatusList";
 
 function App() {
   return (
-    <div className="container">
-    <Nav />
+    <div className="container mt-5">
       <Routes>
-          <Route path='/' element={<Navigate to={"/team"} /> } /> 
-          <Route element={<Main />} path="/team" />
+          <Route path='/' element={<Navigate to={"/pirate"} /> } /> 
+          <Route element={<Main />} path="/pirate" />
           <Route element={<New />} path="/new" />
-          <Route element={<Edit />} path="/team/edit/:id" />
+          <Route element={<Edit />} path="/pirate/edit/:id" />
           <Route path="status" element={<Status />}>
             <Route index element={<Navigate to="1" />} />
             <Route path="1" element={<StatusList num="1" />} />

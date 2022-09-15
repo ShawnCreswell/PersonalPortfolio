@@ -3,29 +3,29 @@ import axios from "axios";
 
 const StatusList = ({ num }) => {
 
-  const [team, setTeam] = useState({});
+  const [pirate, setPirate] = useState({});
   const [loaded, setLoaded] = useState(false);
-  const [teams, setTeams] = useState([]);
+  const [pirates, setPirates] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/team")
+      .get("http://localhost:8000/api/pirate")
       .then((response) => {
-        console.log("useEffect -->", response.data.teams);
-        setTeams(response.data.teams);
+        console.log("useEffect -->", response.data.pirates);
+        setPirates(response.data.pirates);
         setLoaded(true);
       })
       .catch((error) => console.error(error));
-  }, [team]);
-  const updateStatus = (teamId, status) => {
-    setTeam(teams.filter((p) => p._id === teamId));
+  }, [pirate]);
+  const updateStatus = (pirateId, status) => {
+    setPirate(pirates.filter((p) => p._id === pirateId));
     axios
-      .put("http://localhost:8000/api/team/" + teamId, {
-        ...team,
+      .put("http://localhost:8000/api/pirate/" + pirateId, {
+        ...pirate,
         ["status" + num]: status,
       })
       .then((response) => {
         console.log("updateStatus -->", response.data.status3);
-        setTeam(response.data);
+        setPirate(response.data);
       })
       .catch((error) => console.error(error));
   };
@@ -33,7 +33,7 @@ const StatusList = ({ num }) => {
   return (
     <div className="card m-3">
       <div className="card-body">
-        <h4>Teams</h4>
+        <h4>Pirates</h4>
         <table className="table table-bordered table-striped table-hover m-0">
           <thead>
             <tr>
@@ -43,41 +43,41 @@ const StatusList = ({ num }) => {
           </thead>
           <tbody>
             {loaded &&
-              teams.map((team) => {
+              pirates.map((pirate) => {
                 return (
-                  <tr key={team._id} className="align-baseline">
-                    <td>{team.name}</td>
+                  <tr key={pirate._id} className="align-baseline">
+                    <td>{pirate.name}</td>
                     <td>
                       <button
                         className={
                           "btn " +
-                          (team[`status${num}`] === "playing"
+                          (pirate[`status${num}`] === "playing"
                             ? "btn-success"
                             : "btn-secondary")
                         }
-                        onClick={() => updateStatus(team._id, "playing")}
+                        onClick={() => updateStatus(pirate._id, "playing")}
                       >
                         Playing
                       </button>
                       <button
                         className={
                           "btn " +
-                          (team[`status${num}`] === "not playing"
+                          (pirate[`status${num}`] === "not playing"
                             ? "btn-danger"
                             : "btn-secondary")
                         }
-                        onClick={() => updateStatus(team._id, "not playing")}
+                        onClick={() => updateStatus(pirate._id, "not playing")}
                       >
                         Not Playing
                       </button>
                       <button
                         className={
                           "btn " +
-                          (team[`status${num}`] === "undecided"
+                          (pirate[`status${num}`] === "undecided"
                             ? "btn-warning"
                             : "btn-secondary")
                         }
-                        onClick={() => updateStatus(team._id, "undecided")}
+                        onClick={() => updateStatus(pirate._id, "undecided")}
                       >
                         Undecided
                       </button>

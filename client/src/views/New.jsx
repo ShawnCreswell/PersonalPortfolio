@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import TeamForm from "../components/TeamForm";
+import PirateForm from "../components/PirateForm";
 
 const New = () => {
-  const [team, setTeam] = useState([]);
+  const [pirate, setPirate] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/team")
+      .get("http://localhost:8000/api/pirate")
       .then((res) => {
-        setTeam(res.data.team);
+        setPirate(res.data.pirate);
       })
       .catch((err) => console.error(err));
-  }, [team]);
+  }, [pirate]);
 
   return (
     <div>
-      <TeamForm />
+      <PirateForm />
     </div>
   );
 };

@@ -1,78 +1,78 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 const Edit = (props) => {
+  // const { id } = useParams();
+  // const [name, setName] = useState("");
+  // const [imgUrl, setImgUrl] = useState("");
+  // const [crewPosition, setCrewPosition] = useState("");
+  // const [treasure, setTreasure] = useState("");
+  // const [piratePhrase, setPiratePhrase] = useState("");
+  // const [pegLeg, setPegLeg] = useState("yes");
+  // const [eyePatch, setEyePatch] = useState("yes");
+  // const [hookHand, setHookHand] = useState("yes");
   const { id } = useParams();
-  const [name, setName] = useState("");
-  const [position, setPosition] = useState("");
-
-
+  const [pirate, setPirate] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   const [errors, setErrors] = useState([]);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/team/" + id).then((res) => {
-      setName(res.data.name);
-      setPosition(res.data.position);
-    });
-  }, [id]);
-
-  const updateProduct = (e) => {
-    e.preventDefault();
     axios
-      .put("http://localhost:8000/api/team/" + id, {
-        name, position,
+      .get("http://localhost:8000/api/pirate/" + id)
+      .then((res) => {
+        setPirate(res.data);
+        setLoaded(true);
       })
-      .then(() => navigate("/team"))
+      .catch((err) => console.error(err));
+  }, [pirate]);
 
-      .catch((err) => {
-        const errorResponse = err.response.data.errors;
-        const errorArr = [];
-        for (const key of Object.keys(errorResponse)) {
-          errorArr.push(errorResponse[key].message);
-        }
-        setErrors(errorArr);
-      });
-  };
 
   return (
     <div className="container">
-      <div className="card">
-        <div className="card-header text-center">
-          <h1>Edit Player</h1>
-        </div>
-        <div className="card-body">
-          <form onSubmit={updateProduct}>
-          {errors.map((err, index) => <p style={{color:"red"}} key={index}>{err}</p>)}
-
-            <p>
-              <label>Name:</label>
-              <br />
-              <input
-                type="text"
-                name="name"
-                value={name}
-                onChange={(e) => {
-                  setName(e.target.value);
+      {pirate && (
+        <div className="card border border-dark border-5">
+          <div className=" d-flex card-header text-center text-white justify-content-center border-bottom border-dark" style={{backgroundColor: "rgb(120,63,4)"}} >
+            <div>
+              <h1>{pirate.name}</h1>
+            </div>
+            <div className="ms-5">
+              <Link
+                className="btn text-white me-1"
+                style={{
+                  fontSize: "10px",
+                  width: "100px",
+                  height: "50px",
+                  backgroundColor: "darkblue",
                 }}
-              />
-              <p>
-              <label>Position:</label>
-              <br />
-              <input
-                type="text"
-                onChange={(e) => setPosition(e.target.value)}
-                value={position}
-              />
-            </p>
-            </p>
-            <input className="btn btn-primary" type="submit" />
-          </form>
+                to={`/pirate`}
+              >
+                <p>Home</p>
+              </Link>
+            </div>
+          </div>
+          <div className="card-body d-flex justify-content-center align-items-center" style={{backgroundColor: "orange"}}>
+            <div className="text-center">
+              <div className="border border-dark border-5" style={{backgroundColor: "white"}}>
+                <img src={`${pirate.imgUrl}`} alt="" style={{width:"200px"}}/>
+                </div>
+              <h3 className="text-black mt-2">"{pirate.piratePhrase}"</h3>
+            </div>
+            <div className="border border-dark ms-5 ps-2" style={{width: "50%", backgroundColor: "white"}}>
+              <h3 className="text-center">About</h3>
+              <p>Position: {pirate.crewPosition}</p>
+              <p>Treasure: {pirate.treasure}</p>
+              <p>Peg Leg: {pirate.pegLeg}</p>
+              <p>Eye Patch: {pirate.eyePatch}</p>
+              <p>Hook Hand: {pirate.hookHand}</p>
+            </div>
+
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import TeamList from "../components/TeamList";
+import PirateList from "../components/PirateList";
 
 const Main = () => {
-  const [team, setTeam] = useState([]);
+  const [pirate, setPirate] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/team")
+      .get("http://localhost:8000/api/pirate")
       .then((res) => {
-        setTeam(res.data.teams);
+        setPirate(res.data.pirates);
         setLoaded(true);
       })
       .catch((err) => console.error(err));
-  }, [team]);
+  }, [pirate]);
 
-  const removeFromDom = (teamId) => {
-    setTeam(team.filter((team) => team._id !== teamId));
+  const removeFromDom = (pirateId) => {
+    setPirate(pirate.filter((pirate) => pirate._id !== pirateId));
   };
   
   return (
     <div className="table">
       {loaded && (
-        <TeamList team={team} removeFromDom={removeFromDom} />
+        <PirateList pirate={pirate} removeFromDom={removeFromDom} />
       )}
     </div>
   );

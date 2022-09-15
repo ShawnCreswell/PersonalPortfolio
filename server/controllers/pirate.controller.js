@@ -1,46 +1,49 @@
 const { response } = require("express");
 const { model } = require("mongoose");
-const Team = require("../models/team.model");
+const Pirate = require("../models/pirate.model");
 
-module.exports.getAllTeam = (req, res) => {
-  Team.find({})
-    .then((allDaTeam) => res.json({ teams: allDaTeam }))
+module.exports.getAllPirate = (req, res) => {
+  Pirate.find({})
+    .then((allDaPirate) => res.json({ pirates: allDaPirate }))
     .catch((err) => res.json({ message: "Something went wrong", error: err }));
 };
 
-module.exports.getTeam = (request, response) => {
-  Team.findOne({ _id: request.params.id })
-    .then((team) => response.json(team))
+module.exports.getPirate = (request, response) => {
+  Pirate.findOne({ _id: request.params.id })
+    .then((pirate) => response.json(pirate))
     .catch((err) => response.json(err));
 };
 
-module.exports.createTeam = (req, res) => {
-  const { name, position, status1, status2, status3 } = req.body;
-  Team.create({
+module.exports.createPirate = (req, res) => {
+  const { name, imgUrl, crewPosition, treasure, piratePhrase, pegLeg, eyePatch, hookHand } = req.body;
+  Pirate.create({
     name,
-    position,
-    status1,
-    status2,
-    status3,
+    imgUrl,
+    crewPosition,
+    treasure,
+    piratePhrase,
+    pegLeg,
+    eyePatch,
+    hookHand,
   })
-    .then((team) => res.json(team))
+    .then((pirate) => res.json(pirate))
     .catch((err) => res.status(400).json(err));
 };
 
-module.exports.updateTeam = (request, response) => {
-  Team.findByIdAndUpdate({ _id: request.params.id }, request.body, {
+module.exports.updatePirate = (request, response) => {
+  Pirate.findByIdAndUpdate({ _id: request.params.id }, request.body, {
     new: true,
     runValidators: true,
   })
-    .then((updatedTeam) => {
-      console.log(updatedTeam)
-      response.json(updatedTeam);
+    .then((updatedPirate) => {
+      console.log(updatedPirate)
+      response.json(updatedPirate);
     })
     .catch((err) => response.status(400).json(err));
 };
 
-module.exports.deleteTeam = (request, response) => {
-  Team.deleteOne({ _id: request.params.id }).then((deleteConfirmation) =>
+module.exports.deletePirate = (request, response) => {
+  Pirate.deleteOne({ _id: request.params.id }).then((deleteConfirmation) =>
     response.json(deleteConfirmation)
   );
 };
